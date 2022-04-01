@@ -16,3 +16,7 @@ for image in imagesArr:
   s3.meta.client.upload_file(image, 'letsdothiss2026816', ('image'+str(index)+image[-4:])) 
   index+=1
   time.sleep(30) #uploads file in 30s intervals
+  if index != 5:
+    print("File uploaded. Uploading next file...")
+  else:
+    print("All files uploaded")
