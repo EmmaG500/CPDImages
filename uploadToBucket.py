@@ -11,5 +11,5 @@ index = 1
 
 for image in imagesArr:
   # copies file string from images array and uploads it to S3 Bucket with a name of image, the image number, and then the image extension
-  s3.meta.client.upload_file(image, 'cwbuckets2026816', ('image'+str(index)+image[-4:])) 
+  s3.meta.client.upload_file(image, 'letsdothiss2026816', ('image'+str(index)+image[-4:])) 
   index+=1
