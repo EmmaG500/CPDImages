@@ -1,5 +1,7 @@
 #import aws sdk
 import boto3
+#import module to allow sleep
+import time
 
 #define accessor
 s3 = boto3.resource('s3')
@@ -13,3 +15,4 @@ for image in imagesArr:
   # copies file string from images array and uploads it to S3 Bucket with a name of image, the image number, and then the image extension
   s3.meta.client.upload_file(image, 'letsdothiss2026816', ('image'+str(index)+image[-4:])) 
   index+=1
+  time.sleep(30) #uploads file in 30s intervals
