@@ -4,6 +4,7 @@ import boto3
 import time
 import logging
 from botocore.exceptions import ClientError
+import json #used to convert json to string literal
 
 #define accessor
 s3 = boto3.resource('s3')
@@ -49,7 +50,12 @@ for image in imagesArr:
   s3.meta.client.upload_file(image, 'thebuckets2026816', ('image'+str(index)+image[-4:])) 
   index+=1
   time.sleep(30) #uploads file in 30s intervals
-  publish_message('testtopics2026816', 'File Uploaded', 'str')
+  publish_message('testtopics2026816', 'File Uploaded', json.dumps({
+                                                                    "items": {
+                                                                        "DataType": "str",
+                                                                        "StringValue": "test"
+                                                                    }
+                                                                  }))
   if index != 5:
     print("File uploaded. Uploading next file...")
   else:
