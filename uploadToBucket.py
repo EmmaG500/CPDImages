@@ -19,17 +19,17 @@ for image in imagesArr:
   # copies file string from images array and uploads it to S3 Bucket with a name of image, the image number, and then the image extension
   s3.meta.client.upload_file(image, 'thebuckets2026816', ('image'+str(index)+image[-4:])) 
   time.sleep(30) #uploads file in 30s intervals
-  sns_client.publish(
-    TopicArn='arn:aws:sns:us-east-1:769750445903:testtopics2026816',
-    Message='File Uploaded',
-    Subject='Uploaded File',
-    MessageStructure='string',
-    MessageAttributes={
-        'string': {
-            'DataType': 'String',
-            'StringValue': 'message sent',
-        }
-    })
+ # sns_client.publish(
+ #   TopicArn='arn:aws:sns:us-east-1:769750445903:testtopics2026816',
+ #   Message='File Uploaded',
+  #  Subject='Uploaded File',
+  #  MessageStructure='string',
+  #  MessageAttributes={
+  #      'string': {
+  #          'DataType': 'String',
+   #         'StringValue': 'message sent',
+    #    }
+    #})
   if index != 5:
     print("File uploaded. Uploading next file...")
   else:
