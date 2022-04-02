@@ -3,6 +3,7 @@ import boto3
 #import module to allow sleep
 import time
 import logging
+from botocore.exceptions import ClientError
 
 #define accessor
 s3 = boto3.resource('s3')
