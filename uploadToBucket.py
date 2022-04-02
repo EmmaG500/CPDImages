@@ -57,7 +57,7 @@ for image in imagesArr:
     MessageStructure='string',
     MessageAttributes={
         'string': {
-            'DataType': 'string',
+            'DataType': 'String',
             'StringValue': 'message sent',
         }
     })
