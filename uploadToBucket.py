@@ -6,7 +6,7 @@ import logging
 
 #define accessor
 s3 = boto3.resource('s3')
-sns_client = boto3.client('sns')
+sns_client = boto3.client('sns', 'us-east-1')
 
 #string array of images to be uploaded
 imagesArr = ['./images/image1.jpg', './images/image2.png', './images/image3.jpg', './images/image4.jpg', './images/image5.jpg']
