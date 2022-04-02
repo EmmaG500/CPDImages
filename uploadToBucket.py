@@ -50,12 +50,17 @@ for image in imagesArr:
   s3.meta.client.upload_file(image, 'thebuckets2026816', ('image'+str(index)+image[-4:])) 
   index+=1
   time.sleep(30) #uploads file in 30s intervals
-  publish_message('testtopics2026816', 'File Uploaded', json.dumps({
-                                                                    "items": {
-                                                                        "DataType": "str",
-                                                                        "StringValue": "test"
-                                                                    }
-                                                                  }))
+  sns_client.publish(
+    TopicArn='arn:aws:sns:us-east-1:769750445903:testtopics2026816',
+    Message='File Uploaded',
+    Subject='Uploaded File',
+    MessageStructure='string',
+    MessageAttributes={
+        'string': {
+            'DataType': 'string',
+            'StringValue': 'message sent',
+        }
+    })
   if index != 5:
     print("File uploaded. Uploading next file...")
   else:
