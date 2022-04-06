@@ -17,7 +17,7 @@ index = 1
 
 for image in imagesArr:
   # copies file string from images array and uploads it to S3 Bucket with a name of image, the image number, and then the image extension
-  s3.meta.client.upload_file(image, 'testings2026816', ('image'+str(index)+image[-4:])) 
+  s3.meta.client.upload_file(image, 'mycwBuckets2026816', ('image'+str(index)+image[-4:])) 
   time.sleep(30) #uploads file in 30s intervals
   #sns_client.publish(
   #  TopicArn='arn:aws:sns:us-east-1:769750445903:tests2026816',
