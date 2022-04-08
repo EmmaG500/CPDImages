@@ -5,13 +5,14 @@ import time
 import logging
 from botocore.exceptions import ClientError
 import json #used to convert json to string literal
+import os
 
 #define accessor
 s3 = boto3.resource('s3')
 sns_client = boto3.client('sns', 'us-east-1')
 
 #string array of images to be uploaded
-imagesArr = ['./images/image1.jpg', './images/image2.png', './images/image3.jpg', './images/image4.jpg', './images/image5.jpg']
+imagesArr = os.listdir("./Images")
 #index used to help upload the right image to the bucket
 index = 1
 
