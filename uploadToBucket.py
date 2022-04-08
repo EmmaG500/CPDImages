@@ -11,6 +11,7 @@ sns_client = boto3.client('sns', 'us-east-1')
 
 try: #to initialise the images array
     #string array of images to be uploaded - array is populated with images found in the directory named Images on EC2 Instance
+    print(os.listdir)
     imagesArr = os.listdir("./images")
     #index used to help upload the right image to the bucket
     index = 1
