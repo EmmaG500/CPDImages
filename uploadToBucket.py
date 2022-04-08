@@ -36,9 +36,9 @@ try: #to initialise the images array
             index+=1 #increment index by 1 to allow for the correct message to be printed in the next loop
 
     except Exception as e: #when an issue occurs in the loop, print error message to console for further debugging
-        print("An error occurred! See below for more information")
+        print("An error occurred uploading the files! See below for more information")
         print(e)
 
 except Exception as e: #when an issue occurs initialising the images array, print error message to console for further debugging
-        print("An error occurred! See below for more information")
+        print("An error occurred access the directory! See below for more information")
         print(e)
