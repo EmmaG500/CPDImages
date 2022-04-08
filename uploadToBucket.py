@@ -23,6 +23,7 @@ try: #to initialise the images array
     try: #to upload the contents of the images array to the s3 bucket
         print("Uploading files...") #indicate that function has started and files will start getting uploaded to S3 bucker
         for image in imagesArr:
+            print("Uploading image"+str(index)+image[-4:]+"...")
             now = datetime.now() #capture current time
             current_time = now.strftime("%H:%M:%S") #format current time
             # copies file string from images array and uploads it to S3 Bucket with a name of image, the image number, and then the image extension
