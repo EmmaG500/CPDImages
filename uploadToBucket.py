@@ -3,7 +3,9 @@ import boto3
 #import module to allow sleep
 import time
 #used to access images directory
-import os 
+import os
+#used to access current time to print to console
+from datetime import datetime
 
 #define accessor
 s3 = boto3.resource('s3')
@@ -21,11 +23,13 @@ try: #to initialise the images array
     try: #to upload the contents of the images array to the s3 bucket
         print("Uploading files...") #indicate that function has started and files will start getting uploaded to S3 bucker
         for image in imagesArr:
+            now = datetime.now() #capture current time
+            current_time = now.strftime("%H:%M:%S") #format current time
             # copies file string from images array and uploads it to S3 Bucket with a name of image, the image number, and then the image extension
             s3.meta.client.upload_file(image, 'imagesbuckets2026816', ('image'+str(index)+image[-4:])) 
             time.sleep(30) #uploads file in 30s intervals
-            if index != 5: #print message to indicate that the function is not finished
-                print("File uploaded. Uploading next file...")
+            if index != 5: #print message to indicate that the function is not finished with the time the file was uploaded
+                print(current_time + ": File uploaded. Uploading next file...")
             else: #print message to indicate function is done
                 print("All files uploaded. Exiting...")
             
