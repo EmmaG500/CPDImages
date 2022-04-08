@@ -12,8 +12,8 @@ s3 = boto3.resource('s3')
 sns_client = boto3.client('sns', 'us-east-1')
 
 try: #to initialise the images array
-    #string array of images to be uploaded - array is populated with images found in the directory named Images on EC2 Instance
-    print(os.listdir("./images"))
+    #string array of images to be uploaded - array is populated with images found in the directory named Images on EC2 Instance with the directory path appended
+    #so the upload_file function can find and access the image within its directory
     imagesArr = []
     for file in os.listdir("./images"):
         imagesArr.append("./images/"+file)
