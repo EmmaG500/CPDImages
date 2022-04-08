@@ -28,9 +28,9 @@ try: #to initialise the images array
             # copies file string from images array and uploads it to S3 Bucket with a name of image, the image number, and then the image extension
             s3.meta.client.upload_file(image, 'imagesbuckets2026816', ('image'+str(index)+image[-4:])) 
             time.sleep(30) #uploads file in 30s intervals
-            if index != 5: #print message to indicate that the function is not finished with the time the file was uploaded
-                print(current_time + ": File uploaded. Uploading next file...")
-            else: #print message to indicate function is done
+            #print message to indicate that the function is still running with the time the file was uploaded
+            print(current_time + ": File uploaded. Uploading next file...") 
+            if index == 5: #print message to indicate function is done
                 print("All files uploaded. Exiting...")
             
             index+=1 #increment index by 1 to allow for the correct message to be printed in the next loop
