@@ -31,7 +31,7 @@ try: #to initialise the images array
             time.sleep(30) #uploads file in 30s intervals
             #print message to indicate that the function is still running with the time the file was uploaded
             print(current_time + ": File uploaded. Uploading next file...") 
-            if index == len(imagesArr): #print message to indicate function is done
+            if index == 5: #print message to indicate function is done
                 print("All files uploaded. Exiting...")
             
             index+=1 #increment index by 1 to allow for the correct message to be printed in the next loop
