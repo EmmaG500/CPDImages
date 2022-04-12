@@ -39,7 +39,7 @@ try:
   print(queues)
 
   for q in queues['QueueUrls']:
-    print("Listing attributes for " + q +"...\n")
+    print("\nListing attributes for " + q +"...\n")
     print(queue.get_queue_attributes(QueueUrl=q))
 
   print("\nListing Lamba functions...\n")
