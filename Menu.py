@@ -396,6 +396,8 @@ def create_trigger(queue_name):
             Enabled=True,
             BatchSize=10
         )
+        
+        print("Lambda trigger created. Returning to menu...")
     except ClientError as e:
         #if trigger exists
         if e.response['Error']['Code'] == 'EntityAlreadyExists':
