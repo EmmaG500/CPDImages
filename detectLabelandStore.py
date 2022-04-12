@@ -24,7 +24,7 @@ def lambda_handler(event, context):
                         "Name": image,
                     }
                 },
-                MaxLabels=10,
+                MaxLabels=5,
                 MinConfidence=85,
             )
 
