@@ -181,6 +181,7 @@ def create_sns(name):
         
         if answer.lower() == "yes" or answer.lower() == "y":  # if user wishes to configure notifications
             bucket = input("Enter bucket name here: ")
+            print("Configuring topic access policy...")
 
             sns_topic_policy = { #define policy to allow bucket to access topic
                 "Id": "s3EventSNS",
@@ -212,7 +213,7 @@ def create_sns(name):
             print("Configuring notifications to bucket...")
             time.sleep(5)
             #configure notifications from bucket to sns
-            s3_client.put_bucket_notification_configuration(
+            s3_client.put_bucket_notification_configuration( #creates but doesn't seem to work?
                 Bucket=bucket,
                 NotificationConfiguration={
                     'TopicConfigurations': [
@@ -221,10 +222,10 @@ def create_sns(name):
                             'TopicArn': res['TopicArn'],
                             'Events': [
                                 's3:ObjectCreated:*'  # monitor all create events on bucket
-                            ]
-                        }
-                    ]
-                }
+                            ],
+                        },
+                    ],
+                },
             )
             print("Topic created. Returning to menu...")
         # if user does not wish to configure notifications
@@ -346,7 +347,7 @@ def create_queue(name):
             sqs_queue_arn = sqs_queue_attrs['QueueArn']
 
             #configure notifications from queue to sns
-            sns_client.subscribe(
+            sns_client.subscribe( #creates but doesn't seem to work?
                 TopicArn=topic,
                 Protocol='sqs',
                 Endpoint=sqs_queue_arn
@@ -375,7 +376,7 @@ def create_queue(name):
         menu_options()
 
 
-def create_trigger(queue_name):
+def create_trigger(queue_name): #creates but doesn't seem to work?
     try:
         client = boto3.client('lambda', region_name='us-east-1')
         print("Creating Lambda trigger...")
@@ -392,12 +393,11 @@ def create_trigger(queue_name):
         #create trigger
         client.create_event_source_mapping(
             EventSourceArn=sqs_queue_arn,
-            FunctionName=lambdaName,
+            FunctionName='arn:aws:lambda:us-west-1:769750445903:function:'+lambdaName,
             Enabled=True,
-            BatchSize=10
+            BatchSize=10,
         )
-        
-        print("Lambda trigger created. Returning to menu...")
+        print("Trigger created. Returning to menu...")
     except ClientError as e:
         #if trigger exists
         if e.response['Error']['Code'] == 'EntityAlreadyExists':
