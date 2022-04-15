@@ -84,7 +84,8 @@ def create_instance(name):
         #instance creation
         userData='''#!/bin/bash
                     sudo yum install git -y
-                    sudo pip3 install boto3'''
+                    sudo pip3 install boto3
+                    git clone https://github.com/EmmaG500/CPDImages.git'''
 
         ec2_client.run_instances(
             ImageId="ami-0c02fb55956c7d316",
@@ -106,7 +107,7 @@ def create_instance(name):
                     ]
                 },
             ],
-            #install git and boto3 on instance
+            #install git and boto3 on instance and clone repo with images and upload script
             UserData=userData
         )
 
@@ -177,9 +178,9 @@ def create_sns(name):
             ]
         )
 
-        answer = input("Configure bucket notification to topic? Type yes or no\n>>> ")
+        answer = input("Configure topic access policy? Type yes or no\n>>> ")
         
-        if answer.lower() == "yes" or answer.lower() == "y":  # if user wishes to configure notifications
+        if answer.lower() == "yes" or answer.lower() == "y":  # if user wishes to change access policy
             bucket = input("Enter bucket name here: ")
             print("Configuring topic access policy...")
 
@@ -209,6 +210,11 @@ def create_sns(name):
                 AttributeName='Policy',
                 AttributeValue=json.dumps(sns_topic_policy)
             )
+        
+        answer = input("Configure notifications to topic? Type yes or no\n>>> ")
+
+        if answer.lower() == "yes" or answer.lower() == "y":  # if user wishes to configure notifications
+            
 
             print("Configuring notifications to bucket...")
             time.sleep(5)
